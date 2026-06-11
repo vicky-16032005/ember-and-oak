@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-bg text-ink font-body antialiased;
+  }
+  ::selection {
+    background: #c75a1e;
+    color: #fff6ee;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(11, 10, 9, 0.62);
+    backdrop-filter: blur(14px) saturate(1.25);
+    -webkit-backdrop-filter: blur(14px) saturate(1.25);
+    border: 1px solid rgba(237, 231, 221, 0.08);
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .glass {
+      background: rgba(11, 10, 9, 0.97);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+
+  /* Film grain on a fixed, pointer-events-none overlay only (never on
+     scrolling containers, per perf guardrails). */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  }
+
+  .btn-press {
+    transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ---- Signature animation: embers rising off the coal bed ---- */
+
+.ember {
+  position: absolute;
+  bottom: 44px;
+  width: var(--size, 5px);
+  height: var(--size, 5px);
+  border-radius: 9999px;
+  background: radial-gradient(circle, #ffd9a8 0%, #f08a4d 45%, rgba(199, 90, 30, 0) 75%);
+  opacity: 0;
+  animation: ember-rise var(--dur, 3.4s) linear var(--delay, 0s) infinite;
+}
+
+@keyframes ember-rise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.95;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(var(--drift, 10px), var(--rise, -160px), 0) scale(0.35);
+    opacity: 0;
+  }
+}
+
+.coal {
+  animation: coal-breathe var(--dur, 4.2s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@keyframes coal-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Hero ambient embers: smaller, slower, fewer */
+.ember-hero {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, #ffd9a8 0%, #f08a4d 50%, rgba(199, 90, 30, 0) 80%);
+  opacity: 0;
+  animation: ember-rise var(--dur, 6s) linear var(--delay, 0s) infinite;
+}
+
+/* Status line crossfade inside the oven card */
+.status-swap {
+  animation: status-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes status-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ember,
+  .ember-hero,
+  .coal,
+  .status-swap {
+    animation: none !important;
+  }
+  .ember,
+  .ember-hero {
+    opacity: 0;
+  }
+  .coal {
+    opacity: 0.8;
+  }
+}
