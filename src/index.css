@@ -60,6 +60,17 @@
   .btn-press:active {
     transform: scale(0.97);
   }
+
+  /* gallery-matching label system: short strings only, never paragraphs */
+  .label {
+    @apply font-mono text-[10.5px] uppercase tracking-[0.04em] leading-relaxed;
+  }
+  .chip {
+    @apply inline-flex items-center whitespace-nowrap rounded-full border border-ink/30 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.04em] text-ink/80;
+  }
+  .pill-solid {
+    @apply bg-ink text-[#131110] hover:bg-white;
+  }
 }
 
 /* ---- Signature animation: embers rising off the coal bed ---- */

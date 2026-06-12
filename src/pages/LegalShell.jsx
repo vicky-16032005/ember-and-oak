@@ -7,9 +7,9 @@ export default function LegalShell({ title, children }) {
       <div className="mx-auto max-w-3xl px-6 py-20">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink"
+          className="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.04em] text-muted transition-colors hover:text-ink"
         >
-          <ArrowLeft size={16} weight="bold" />
+          <ArrowLeft size={14} weight="bold" />
           Back to Ember &amp; Oak
         </Link>
         <h1 className="font-display mt-8 text-4xl">{title}</h1>

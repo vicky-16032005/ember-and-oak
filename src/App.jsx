@@ -5,25 +5,21 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   ArrowUpRight,
   CalendarCheck,
-  Carrot,
   CheckCircle,
   Clock,
-  Coffee,
-  CookingPot,
   Cursor,
   Flame,
-  Knife,
   Leaf,
   List,
   MapPin,
   Phone,
   Star,
   Trophy,
-  UsersThree,
   X,
 } from '@phosphor-icons/react'
 
 gsap.registerPlugin(ScrollTrigger)
+window.gsap = gsap
 
 const EASE = 'power3.out'
 
@@ -79,6 +75,7 @@ function Navbar() {
     { href: '#kitchen', label: 'The kitchen' },
     { href: '#craft', label: 'Our day' },
     { href: '#menu', label: 'Menu' },
+    { href: 'https://vicky-16032005.github.io/ember-gallery/', label: 'In the round' },
   ]
 
   return (
@@ -102,7 +99,7 @@ function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-[15px] text-muted transition-colors hover:text-ink"
+                className="label text-[11px] text-muted transition-colors hover:text-ink"
               >
                 {l.label}
               </a>
@@ -112,7 +109,7 @@ function Navbar() {
           <div className="flex items-center gap-2">
             <a
               href="#reserve"
-              className="btn-press hidden items-center gap-1.5 rounded-full bg-ember px-5 py-2.5 text-[15px] font-semibold text-[#FFF6EE] transition-colors hover:bg-ember-bright sm:inline-flex"
+              className="btn-press pill-solid hidden items-center gap-1.5 rounded-full px-5 py-2.5 font-mono text-[13px] transition-colors sm:inline-flex"
             >
               Reserve a table
               <ArrowUpRight size={16} weight="bold" />
@@ -154,7 +151,7 @@ function Navbar() {
             <a
               href="#reserve"
               onClick={() => setOpen(false)}
-              className="btn-press mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-ember px-6 py-3.5 text-lg font-semibold text-[#FFF6EE]"
+              className="btn-press pill-solid mt-4 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3.5 font-mono text-[15px]"
             >
               Reserve a table
               <ArrowUpRight size={18} weight="bold" />
@@ -223,16 +220,16 @@ function Hero() {
         <div className="mt-9 flex flex-wrap items-center gap-3.5">
           <a
             href="#reserve"
-            className="hero-cta btn-press inline-flex items-center gap-2 rounded-full bg-ember px-7 py-3.5 text-lg font-semibold text-[#FFF6EE] transition-colors hover:bg-ember-bright"
+            className="hero-cta btn-press pill-solid inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-mono text-[14px] transition-colors"
           >
             Reserve a table
             <ArrowUpRight size={18} weight="bold" />
           </a>
           <a
-            href="#menu"
-            className="hero-cta btn-press glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-lg font-semibold text-ink transition-colors hover:border-ink/25"
+            href="https://vicky-16032005.github.io/ember-gallery/"
+            className="hero-cta btn-press glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-mono text-[14px] text-ink transition-colors hover:border-ink/25"
           >
-            View the menu
+            The menu, in the round
           </a>
         </div>
       </div>
@@ -326,7 +323,7 @@ function OvenScene() {
         ))}
       </div>
       <div className="absolute left-5 top-5">
-        <p key={statusIdx} className="status-swap text-sm font-medium text-ink/85">
+        <p key={statusIdx} className="status-swap label text-ink/85">
           {OVEN_STATUS[statusIdx]}
         </p>
       </div>
@@ -364,10 +361,10 @@ function MenuShuffler() {
             className={`absolute inset-x-0 bottom-0 rounded-xl border border-divider bg-deep p-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] ${styles}`}
           >
             <div className="flex items-baseline justify-between gap-4">
-              <h4 className="font-display text-lg leading-snug">{dish.name}</h4>
-              <span className="text-tan">{dish.price}</span>
+              <h4 className="label text-[11px] text-ink">{dish.name}</h4>
+              <span className="font-mono text-[11px] text-tan">{dish.price}</span>
             </div>
-            <p className="mt-1.5 text-sm text-muted">{dish.detail}</p>
+            <p className="mt-2 text-sm text-muted">{dish.detail}</p>
           </article>
         )
       })}
@@ -400,7 +397,7 @@ function ReserveDemo() {
           return (
             <span
               key={d}
-              className={`flex h-10 items-center justify-center rounded-md text-sm transition-all duration-300 ${
+              className={`flex h-10 items-center justify-center rounded-md font-mono text-[11px] transition-all duration-300 ${
                 pressed
                   ? 'scale-95 bg-ember font-semibold text-[#FFF6EE]'
                   : 'border border-divider text-muted'
@@ -544,13 +541,15 @@ const DAY_STEPS = [
   {
     time: '6:00',
     title: 'First fire',
+    chips: ['Oak', 'Single mill'],
     body: 'Oak from a single mill upstate. The oven takes two hours to come to temperature, and we give it three.',
-    img: 'https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=1200&q=80',
-    alt: 'A cook working over open flame in a dark kitchen',
+    img: 'https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Steam rising off flatbread fresh from the wood oven',
   },
   {
     time: '11:30',
     title: 'The market haul',
+    chips: ['Market', 'At noon'],
     body: 'Whatever the farm trucks brought decides the menu. The chalkboard gets written at noon, not before.',
     img: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=80',
     alt: 'Crates of fresh vegetables laid out at a morning market',
@@ -558,6 +557,7 @@ const DAY_STEPS = [
   {
     time: '17:00',
     title: 'Doors open',
+    chips: ['Service', 'To the last ember'],
     body: 'Candles lit, wine pulled, the room fills. Service runs until the last ember settles.',
     img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80',
     alt: 'Warm lamplight over a full bistro dining room at night',
@@ -604,17 +604,25 @@ function OurDay() {
           <div key={step.title} className="day-card sticky top-24">
             <article className="grid grid-cols-1 gap-8 rounded-2xl border border-divider bg-surface p-7 sm:p-10 lg:grid-cols-5 lg:items-center">
               <div className="lg:col-span-3">
-                <p className="font-display text-2xl text-tan">{step.time}</p>
-                <h3 className="font-display mt-3 text-2xl sm:text-3xl">{step.title}</h3>
+                <h3 className="font-display text-2xl sm:text-3xl">{step.title}</h3>
                 <p className="mt-4 max-w-md text-lg leading-relaxed text-muted">{step.body}</p>
               </div>
               <div className="lg:col-span-2">
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="label text-ink">{step.time}</span>
+                  <span className="label text-ink/55">{step.title}</span>
+                </div>
                 <img
                   src={step.img}
                   alt={step.alt}
                   loading="lazy"
-                  className="aspect-[4/3] w-full rounded-xl object-cover"
+                  className="mt-3 aspect-[4/3] w-full rounded-lg object-cover"
                 />
+                <div className="mt-3.5 flex flex-wrap gap-1.5">
+                  {step.chips.map((c) => (
+                    <span key={c} className="chip">{c}</span>
+                  ))}
+                </div>
               </div>
             </article>
           </div>
@@ -626,14 +634,18 @@ function OurDay() {
 
 /* ==================== Menu: divided dark tile grid =================== */
 
-const SERVICES = [
-  { icon: Flame, title: 'Wood-fired dinner', desc: 'The main event. Five to ten plates a night, all from the oven.' },
-  { icon: Carrot, title: 'Seasonal lunch', desc: 'Shorter, brighter, faster. Thursday through Sunday.' },
-  { icon: Coffee, title: 'Weekend brunch', desc: "Hearth-baked breads, soft eggs, last night's coals." },
-  { icon: UsersThree, title: 'Private dining room', desc: 'Twelve seats behind the kitchen wall. Yours for the night.' },
-  { icon: Knife, title: "Chef's counter", desc: 'Four stools at the pass. The tasting menu, narrated.' },
-  { icon: CookingPot, title: 'Feasts to carry home', desc: 'Whole birds, sides, and bread, packed for your table.' },
+const MENU_TILES = [
+  { img: '1544025162-d76694265947', course: 'Dinner', name: 'Wood-fired dinner', chips: ['Wood-fired', 'Nightly'], right: 'From 24', desc: 'The main event. Five to ten plates a night, all from the oven.', alt: 'Smoked short rib on an oak board with tomatoes' },
+  { img: '1490645935967-10de6ba17061', course: 'Lunch', name: 'Seasonal lunch', chips: ['Seasonal', 'Thu to Sun'], right: 'From 14', desc: 'Shorter, brighter, faster.', alt: 'Garden bowl with soft egg and avocado' },
+  { img: '1424847651672-bf20a4b0982b', course: 'Brunch', name: 'Weekend brunch', chips: ['Weekends'], right: 'From 9', desc: "Hearth-baked breads, soft eggs, last night's coals.", alt: 'Brunch table with waffles seen from above' },
+  { img: '1517248135467-4c7edcad34c4', course: 'Room', name: 'Private dining', chips: ['12 seats'], right: '2017', desc: 'Twelve seats behind the kitchen wall. Yours for the night.', alt: 'The moody private back room' },
+  { img: '1414235077428-338989a2e8c0', course: 'Counter', name: "Chef's counter", chips: ['Tasting', '4 stools'], right: '58', desc: 'Four stools at the pass. The tasting menu, narrated.', alt: 'A plate served by candlelight' },
+  { img: '1504674900247-0877df9cc836', course: 'Feast', name: 'Feasts to carry home', chips: ['Packed to go'], right: 'From 22', desc: 'Whole birds, sides, and bread, packed for your table.', alt: 'Bowls of food ready to share' },
 ]
+
+function tileImg(id, w = 800) {
+  return `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`
+}
 
 function Menu() {
   const ref = useRef(null)
@@ -646,14 +658,27 @@ function Menu() {
           Ways to eat with us.
         </h2>
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-divider bg-divider sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
-            <div key={s.title} className="menu-tile group bg-deep p-8 transition-colors duration-300 hover:bg-surface sm:p-10">
-              <s.icon
-                size={26}
-                className="text-ember-bright transition-transform duration-300 group-hover:-translate-y-0.5"
+          {MENU_TILES.map((s) => (
+            <div key={s.name} className="menu-tile group bg-deep p-6 transition-colors duration-300 hover:bg-surface sm:p-7">
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="label text-ink">{s.course}</span>
+                <span className="label truncate text-ink/55">{s.name}</span>
+              </div>
+              <img
+                src={tileImg(s.img)}
+                alt={s.alt}
+                loading="lazy"
+                className="mt-3 aspect-[4/3] w-full rounded-lg object-cover"
               />
-              <h3 className="font-display mt-5 text-xl">{s.title}</h3>
-              <p className="mt-2.5 leading-relaxed text-muted">{s.desc}</p>
+              <div className="mt-3.5 flex items-center justify-between gap-3">
+                <div className="flex flex-wrap gap-1.5">
+                  {s.chips.map((c) => (
+                    <span key={c} className="chip">{c}</span>
+                  ))}
+                </div>
+                <span className="label shrink-0 text-ink/55">{s.right}</span>
+              </div>
+              <p className="mt-4 leading-relaxed text-muted">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -696,7 +721,7 @@ function Trust() {
 function Field({ label, children }) {
   return (
     <label className="flex flex-col gap-2">
-      <span className="text-sm font-medium text-ink/90">{label}</span>
+      <span className="label text-ink/85">{label}</span>
       {children}
     </label>
   )
@@ -809,7 +834,7 @@ function Reserve() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="btn-press mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ember px-7 py-4 text-lg font-semibold text-[#FFF6EE] transition-colors hover:bg-ember-bright disabled:opacity-70"
+                className="btn-press pill-solid mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 font-mono text-[14px] transition-colors disabled:opacity-70"
               >
                 {status === 'sending' ? 'Sending request...' : 'Reserve a table'}
               </button>
@@ -837,24 +862,25 @@ function Footer() {
           <p className="mt-4 max-w-xs text-muted">
             Wood-fired cooking, neighborhood soul. Same corner since 2012.
           </p>
-          <p className="mt-6 flex items-center gap-2 text-sm text-ink/80">
+          <p className="label mt-6 flex items-center gap-2 text-ink/80">
             <span className="h-2 w-2 rounded-full bg-ember-bright" aria-hidden="true" />
             Open tonight until 23:00
           </p>
         </div>
 
         <nav aria-label="Explore">
-          <h3 className="font-semibold">Explore</h3>
+          <h3 className="label text-ink">Explore</h3>
           <ul className="mt-4 space-y-3 text-muted">
             <li><a href="#kitchen" className="transition-colors hover:text-ink">The kitchen</a></li>
             <li><a href="#craft" className="transition-colors hover:text-ink">Our day</a></li>
             <li><a href="#menu" className="transition-colors hover:text-ink">Menu</a></li>
+            <li><a href="https://vicky-16032005.github.io/ember-gallery/" className="transition-colors hover:text-ink">The menu, in the round</a></li>
             <li><a href="#reserve" className="transition-colors hover:text-ink">Reservations</a></li>
           </ul>
         </nav>
 
         <div>
-          <h3 className="font-semibold">Hours</h3>
+          <h3 className="label text-ink">Hours</h3>
           <ul className="mt-4 space-y-3 text-muted">
             <li>Dinner: Tue to Sun, 17:00</li>
             <li>Lunch: Thu to Sun, 11:30</li>
@@ -864,7 +890,7 @@ function Footer() {
         </div>
 
         <div>
-          <h3 className="font-semibold">Find us</h3>
+          <h3 className="label text-ink">Find us</h3>
           <ul className="mt-4 space-y-3 text-muted">
             <li>214 Coal Street</li>
             <li>(312) 847-1928</li>
@@ -874,7 +900,7 @@ function Footer() {
       </div>
 
       <div className="border-t border-divider">
-        <div className="mx-auto flex max-w-wrap flex-col items-start justify-between gap-3 px-6 py-6 text-sm text-muted sm:flex-row sm:items-center sm:px-10">
+        <div className="mx-auto flex max-w-wrap flex-col items-start justify-between gap-3 px-6 py-6 font-mono text-[10.5px] text-muted sm:flex-row sm:items-center sm:px-10">
           <p>&copy; 2026 Ember &amp; Oak. A demo website.</p>
           <div className="flex gap-6">
             <Link to="/privacy" className="transition-colors hover:text-ink">Privacy</Link>

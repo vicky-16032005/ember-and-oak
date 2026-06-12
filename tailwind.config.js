@@ -19,6 +19,7 @@ export default {
       fontFamily: {
         display: ['"Young Serif"', 'Georgia', 'serif'],
         body: ['Figtree', 'system-ui', 'sans-serif'],
+        mono: ['"Martian Mono"', 'ui-monospace', 'monospace'],
       },
       maxWidth: {
         wrap: '76rem',
